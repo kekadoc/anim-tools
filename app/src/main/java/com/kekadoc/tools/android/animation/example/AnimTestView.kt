@@ -2,21 +2,15 @@ package com.kekadoc.tools.android.animation.example
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.RoundedCornerTreatment
-import com.kekadoc.tools.android.color
-import com.kekadoc.tools.android.dimen
-import com.kekadoc.tools.android.dpToPx
-import com.kekadoc.tools.android.shaper.ShapedDrawableBuilder
-import com.kekadoc.tools.android.shaper.ShapedDrawableBuilder.Companion.cutAllCorners
-import com.kekadoc.tools.android.shaper.ShapedDrawableBuilder.Companion.roundAllCorners
-import com.kekadoc.tools.android.shaper.edges.SquareEdgeTreatment
-import com.kekadoc.tools.android.themeColor
+import com.kekadoc.tools.android.AndroidUtils
+import com.kekadoc.tools.android.shaper.roundAllCorners
+import com.kekadoc.tools.android.shaper.shapedDrawable
+import com.kekadoc.tools.android.view.ViewUtils.dpToPx
 
 class AnimTestView : View {
 
@@ -45,15 +39,15 @@ class AnimTestView : View {
         }
         Log.e(TAG, "init: $color")
 
-        drawable = ShapedDrawableBuilder.createWithContext(getContext()) {
+        drawable = shapedDrawable {
+            shape { roundAllCorners(dpToPx(16f)) }
             setTint(color)
-            roundAllCorners(dpToPx(16f))
             setShadowColor(Color.BLACK)
             setStroke(dpToPx(2f), Color.BLUE)
-            setRippleColor(themeColor(android.R.attr.colorAccent))
+            setRippleColor(AndroidUtils.getThemeColor(context, android.R.attr.colorAccent))
             setElevation(dpToPx(4f))
             setAlpha(255)
-        }.build()
+        }
 
         background = drawable
         count++
