@@ -10,7 +10,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.kekadoc.tools.android.AndroidUtils
 import com.kekadoc.tools.android.shaper.roundAllCorners
 import com.kekadoc.tools.android.shaper.shapedDrawable
-import com.kekadoc.tools.android.view.ViewUtils.dpToPx
+import com.kekadoc.tools.android.view.dpToPx
 
 class AnimTestView : View {
 
